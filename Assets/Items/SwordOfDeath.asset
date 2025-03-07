@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cb9d38589a2444299b7554ec7ab812, type: 3}
+  m_Name: SwordOfDeath
+  m_EditorClassIdentifier: 
+  itemName: SwordOfDeath
+  itemIcon: {fileID: 21300000, guid: 8a96b4f9eabe6ac49a5a6e859d558b0d, type: 3}
+  itemPrefab: {fileID: 8781805537091577275, guid: 3200a70d224e2e04b92595633b1a79c1,
+    type: 3}
+  itemType: 5
+  attachPoint: 1
+  scale: {x: 0.5, y: 0.5, z: 0.5}
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
