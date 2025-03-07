@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
     public Action OnJump;
     public Action OnAttack;
     public Action<int> OnNumericButtonPressed;
-
     private PlayerBindings playerInputActions;
 
     private void Awake()
@@ -75,7 +74,7 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Unhandled key: " + pressedKey);
+            Debug.Log("Not valid number" + itemNumber);
         }
     }
 

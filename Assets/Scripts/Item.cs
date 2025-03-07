@@ -7,8 +7,6 @@ public class Item : ScriptableObject
     public Sprite itemIcon;
     public GameObject itemPrefab;
     public ItemType itemType;
-    public ItemAttachment.AttachPoint attachPoint;
-
     [Header("Transform Adjustments")]
     public Vector3 scale = Vector3.one;
     public Vector3 position = Vector3.zero;

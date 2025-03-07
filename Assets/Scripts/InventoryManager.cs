@@ -27,7 +27,7 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No action assigned for item equip.");
+            Debug.Log("Can not equip item at number " + number);
         }
     }
 
