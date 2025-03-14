@@ -89,6 +89,33 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e1bf158-6422-4b90-bee6-1ca22415461e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""5670ada5-8fdd-4a9e-822a-6ee1e419610e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""feeab964-308f-4622-83b7-cd31ef958ad1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -118,6 +145,17 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""36d3edf1-e99e-433c-a2c1-a6a778d95b8a"",
                     ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Defend"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d53037bd-10e6-449b-9c69-d1a4ae6779dc"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -388,6 +426,72 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
                     ""action"": ""NumericButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0567ca4a-7fea-42e2-9f0c-83fadd80f210"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3c58627-5ac8-4758-9008-cf4e94377d68"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13327d44-7448-4ce3-910e-331d74df9c77"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8b12efa-31fc-4683-a64f-8aac71e6e9f0"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ae82d6d-792a-4a9a-986b-55863ac638b2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c77cdc55-53a3-450f-8039-8ce901bb3f02"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -403,6 +507,9 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
         m_Player_SwitchRight = m_Player.FindAction("SwitchRight", throwIfNotFound: true);
         m_Player_SwitchLeft = m_Player.FindAction("SwitchLeft", throwIfNotFound: true);
         m_Player_NumericButton = m_Player.FindAction("NumericButton", throwIfNotFound: true);
+        m_Player_ToggleWeapon = m_Player.FindAction("ToggleWeapon", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -471,6 +578,9 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SwitchRight;
     private readonly InputAction m_Player_SwitchLeft;
     private readonly InputAction m_Player_NumericButton;
+    private readonly InputAction m_Player_ToggleWeapon;
+    private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Menu;
     public struct PlayerActions
     {
         private @PlayerBindings m_Wrapper;
@@ -482,6 +592,9 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
         public InputAction @SwitchRight => m_Wrapper.m_Player_SwitchRight;
         public InputAction @SwitchLeft => m_Wrapper.m_Player_SwitchLeft;
         public InputAction @NumericButton => m_Wrapper.m_Player_NumericButton;
+        public InputAction @ToggleWeapon => m_Wrapper.m_Player_ToggleWeapon;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -512,6 +625,15 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
             @NumericButton.started += instance.OnNumericButton;
             @NumericButton.performed += instance.OnNumericButton;
             @NumericButton.canceled += instance.OnNumericButton;
+            @ToggleWeapon.started += instance.OnToggleWeapon;
+            @ToggleWeapon.performed += instance.OnToggleWeapon;
+            @ToggleWeapon.canceled += instance.OnToggleWeapon;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -537,6 +659,15 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
             @NumericButton.started -= instance.OnNumericButton;
             @NumericButton.performed -= instance.OnNumericButton;
             @NumericButton.canceled -= instance.OnNumericButton;
+            @ToggleWeapon.started -= instance.OnToggleWeapon;
+            @ToggleWeapon.performed -= instance.OnToggleWeapon;
+            @ToggleWeapon.canceled -= instance.OnToggleWeapon;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -563,5 +694,8 @@ public partial class @PlayerBindings: IInputActionCollection2, IDisposable
         void OnSwitchRight(InputAction.CallbackContext context);
         void OnSwitchLeft(InputAction.CallbackContext context);
         void OnNumericButton(InputAction.CallbackContext context);
+        void OnToggleWeapon(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }

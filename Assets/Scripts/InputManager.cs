@@ -8,6 +8,10 @@ public class InputManager : MonoBehaviour
     public Action<Vector2> OnMove;
     public Action OnJump;
     public Action OnAttack;
+    public Action<bool> OnDefend;
+    public Action OnToggleWeapon;
+    public Action OnToggleMenu;
+    public Action<bool> OnToggleSprint;
     public Action<int> OnNumericButtonPressed;
     private PlayerBindings playerInputActions;
 
@@ -28,24 +32,67 @@ public class InputManager : MonoBehaviour
         playerInputActions.Enable();
 
         playerInputActions.Player.Move.performed += ctx => HandleMove(ctx);
+        playerInputActions.Player.Move.canceled += ctx => HandleMove(ctx);
+        playerInputActions.Player.Defend.performed += ctx => HandleDefend(ctx);
+        playerInputActions.Player.Defend.canceled += ctx => HandleDefend(ctx);
         playerInputActions.Player.Jump.performed += ctx => HandleJump();
         playerInputActions.Player.Attack.performed += ctx => HandleAttack();
         playerInputActions.Player.NumericButton.performed += HandleNumericButtonPress;
+        playerInputActions.Player.ToggleWeapon.performed += ctx => HandleToggleWeapon();
+        playerInputActions.Player.Sprint.performed += ctx => HandleSprint(ctx);
+        playerInputActions.Player.Sprint.canceled += ctx => HandleSprint(ctx);
+        playerInputActions.Player.Menu.performed += ctx => HandleMenu();
     }
 
     private void OnDisable()
     {
-        playerInputActions.Player.Move.performed -= ctx => HandleMove(ctx);
-        playerInputActions.Player.Jump.performed -= ctx => HandleJump();
-        playerInputActions.Player.Attack.performed -= ctx => HandleAttack();
-        playerInputActions.Player.NumericButton.performed -= HandleNumericButtonPress;
+        if (playerInputActions != null)
+        {
+            playerInputActions.Player.Move.performed -= ctx => HandleMove(ctx);
+            playerInputActions.Player.Move.canceled -= ctx => HandleMove(ctx);
+            playerInputActions.Player.Defend.performed -= ctx => HandleDefend(ctx);
+            playerInputActions.Player.Defend.canceled -= ctx => HandleDefend(ctx);
+            playerInputActions.Player.Jump.performed -= ctx => HandleJump();
+            playerInputActions.Player.Attack.performed -= ctx => HandleAttack();
+            playerInputActions.Player.NumericButton.performed -= HandleNumericButtonPress;
+            playerInputActions.Player.ToggleWeapon.performed -= ctx => HandleToggleWeapon();
+            playerInputActions.Player.Sprint.performed -= ctx => HandleSprint(ctx);
+            playerInputActions.Player.Sprint.canceled -= ctx => HandleSprint(ctx);
+            playerInputActions.Player.Menu.performed -= ctx => HandleMenu();
 
-        playerInputActions.Disable();
+            playerInputActions.Disable();
+        }
+
     }
-
+    private void HandleMenu()
+    {
+        OnToggleMenu?.Invoke();
+    }
     private void HandleMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         OnMove?.Invoke(context.ReadValue<Vector2>());
+    }
+    private void HandleDefend(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+            OnDefend?.Invoke(true);
+        }
+        else { OnDefend?.Invoke(false); }
+    }
+    private void HandleSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+            OnToggleSprint?.Invoke(true);
+        }
+        else { OnToggleSprint?.Invoke(false); }
+    }
+    private void HandleToggleWeapon()
+    {
+        OnToggleWeapon?.Invoke();
     }
 
     private void HandleJump()
@@ -71,10 +118,6 @@ public class InputManager : MonoBehaviour
                 itemNumber -= 1;
 
             OnNumericButtonPressed?.Invoke(itemNumber);
-        }
-        else
-        {
-            Debug.Log("Not valid number" + itemNumber);
         }
     }
 
